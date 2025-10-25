@@ -1,38 +1,136 @@
+/* --- Global Styles & Container --- */
 .App {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  padding: 30px;
+  background-color: #e9ecef; /* Light gray background for the "wall" */
   min-height: 100vh;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #343a40;
+  margin-bottom: 30px;
+}
+
+/* --- Input Section --- */
+.input-section {
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.input-section form {
+  display: flex;
+  gap: 10px;
+}
+
+.input-section input[type="text"] {
+  flex-grow: 1;
+  padding: 12px;
+  border: 2px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.input-section input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.input-section button {
+  padding: 12px 25px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.input-section button:hover {
+  background-color: #0056b3;
+}
+
+.input-section button:active {
+  transform: scale(0.98);
+}
+
+/* --- Note Board (List Container) --- */
+.note-board {
+  display: flex;
+  flex-wrap: wrap; /* Allows notes to wrap onto new rows */
+  justify-content: center;
+  gap: 30px; /* Space between notes */
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* --- Individual Sticky Note Style --- */
+.todo-note {
+  list-style: none;
+  width: 200px; /* Fixed size for a sticky note look */
+  height: 200px;
+  padding: 15px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow for 3D effect */
+  transform: rotate(calc(var(--r, 0) * 1deg)); /* Optional: slight rotation for randomness */
+  /* This random rotation effect will require a small JS tweak if you want it, 
+     but the shadow alone creates the effect. */
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  text-align: left;
 }
 
-.App-link {
-  color: #61dafb;
+.todo-note:nth-child(3n) { transform: rotate(2deg); }
+.todo-note:nth-child(5n) { transform: rotate(-3deg); }
+.todo-note:nth-child(7n) { transform: rotate(1deg); }
+
+.todo-note:hover {
+  transform: scale(1.05) rotate(0deg); /* Lift and straighten on hover */
+  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.note-text {
+  font-family: 'Permanent Marker', cursive; /* Fun, handwriting-like font (must be imported or replaced) */
+  font-size: 1.1rem;
+  color: #343a40;
+  margin: 0;
+  word-wrap: break-word; /* Ensure long text wraps */
+}
+
+/* --- Delete Button (Pin/Icon) --- */
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.delete-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* --- Empty Message --- */
+.empty-message {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-top: 50px;
+    width: 100%;
 }
